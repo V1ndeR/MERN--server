@@ -1,12 +1,27 @@
 const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
+const auth = require("./middleware/Auth")
+const cors = require("cors")
 
 const app = express()
 
 app.use(express.json({ extended: true }))
 
+app.use(cors())
+
 app.use('/api/auth', require('./routes/auth.routes'))
+
+// це ответ сервера (response)
+app.get('/health-check', async (req, res) => {
+    res.send({
+        name: 'name',
+        cars: [
+            'BMW 5',
+            'Audi'
+        ]
+    })
+})
 
 const PORT = config.get('port') || 5000
 

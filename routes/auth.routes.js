@@ -1,10 +1,11 @@
 const { Router } = require('express')
-const { check, validationResult, body} = require('express-validator')
+const { check, validationResult} = require('express-validator')
 const config = require('config')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const router = Router()
+const auth = require('../middleware/Auth');
 
 router.post(
     '/register',
@@ -88,5 +89,9 @@ router.post(
         res.status(500).json({ message: 'Ошибка' })
     }
 })
+
+router.get("/authheathcheck", auth, async (req, res) => {
+    res.status(200).send("authheathcheck pizdec ebaniy 🙌 ");
+});
 
 module.exports = router
