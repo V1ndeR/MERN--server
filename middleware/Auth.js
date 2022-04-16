@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 
 const verifyToken = async (req, res, next) => {
-    console.log(req.body)
     if (req.method === "OPTIONS") {
         next()
     }
