@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
 const router = Router()
-const auth = require('../middleware/Auth');
+const auth = require('../middleware/Auth')
 
 router.post(
     '/register',
@@ -90,8 +90,10 @@ router.post(
     }
 })
 
-router.get("/authheathcheck", auth, async (req, res) => {
-    res.status(200).send("authheathcheck pizdec ebaniy 🙌 ");
+router.post("/authheathcheck", auth, async (req, res) => {
+    res.status(200).send({
+        auth: 'authheathcheck'
+    });
 });
 
 module.exports = router

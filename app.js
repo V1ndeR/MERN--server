@@ -1,8 +1,7 @@
 const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
-const auth = require("./middleware/Auth")
-const cors = require("cors")
+const cors = require('cors')
 
 const app = express()
 
