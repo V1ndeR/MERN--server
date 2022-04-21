@@ -2,6 +2,7 @@ const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const path = require("path")
 
 const app = express()
 
@@ -9,9 +10,10 @@ app.use(express.json({ extended: true }))
 
 app.use(cors())
 
+app.use('/static', express.static(path.join(__dirname, 'image')))
+
 app.use('/api/auth', require('./routes/auth.routes'))
 
-// це ответ сервера (response)
 app.get('/health-check', async (req, res) => {
     res.send({
         name: 'name',
