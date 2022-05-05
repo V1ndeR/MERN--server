@@ -22,8 +22,6 @@ router.post(
 
             const { name: createdBy } = await User.findOne({ _id: creatorUserId })//
 
-            // console.log('createdBy',createdBy)
-
             const image = new Image({ image: fileInfo[0], createdBy, type: fileInfo[fileInfo.length -1] })
 
             await image.save()
