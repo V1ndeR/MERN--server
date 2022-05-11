@@ -68,6 +68,7 @@ router.post(
         const { email, password } = req.body
 
         const user = await User.findOne({ email })
+        console.log(user)
 
         if (!user) {
             return res.status(400).json({ message: 'Пользователь не найден' })
@@ -92,37 +93,10 @@ router.post(
     }
 })
 
-router.post("/authheathcheck", auth, async (req, res) => {
-    res.status(200).send({
-        auth: 'authheathcheck'
-    });
-});
-
-router.post(
-    '/upload',
-    [auth, file.single('img')],
-    async (req, res) => {
-        try {
-            const { userId } = req.body
-            const { filename } = req.file
-            // console.log(filename)
-            if(!filename){
-                return res.status(500).json("Ошибка при загрузке файла");
-            }
-
-            const image = new Image({ image: filename, createdBy: userId })
-
-            await image.save()
-
-            // let fileData = req.file;
-
-            res.status(201).json({ message: 'Файл загружен' })
-        } catch (e) {
-            res.status(500).json({ message: 'Ошибка' })
-        }
-        // console.log(req.files)
-        // console.log(req.body)
-    // res.sendStatus(200);
-});
+// router.post("/authheathcheck", auth, async (req, res) => {
+//     res.status(200).send({
+//         auth: 'authheathcheck'
+//     });
+// });
 
 module.exports = router

@@ -14,15 +14,8 @@ app.use('/static', express.static(path.join(__dirname, 'image')))
 
 app.use('/api/auth', require('./routes/auth.routes'))
 
-app.get('/health-check', async (req, res) => {
-    res.send({
-        name: 'name',
-        cars: [
-            'BMW 5',
-            'Audi'
-        ]
-    })
-})
+app.use('/api/images', require('./routes/images.routes'))
+
 
 const PORT = config.get('port') || 5000
 

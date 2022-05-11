@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+const {Schema, model} = require('mongoose')
 
-const imageSchema = new mongoose.Schema({
+const imageSchema = new Schema({
     image: {type: String},
+    type: {type: String},
     createdBy: {type: String}
 })
 
-const Image = new mongoose.model('Image', imageSchema)
-module.exports = Image
+module.exports = model('Image',imageSchema)
