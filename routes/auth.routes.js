@@ -4,7 +4,7 @@ const config = require('config')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
-const Image = require('../models/Image')
+const Image = require('../models/File')
 const router = Router()
 const auth = require('../middleware/Auth')
 const file = require('../middleware/File')
@@ -68,7 +68,7 @@ router.post(
         const { email, password } = req.body
 
         const user = await User.findOne({ email })
-        console.log(user)
+        // console.log(user)
 
         if (!user) {
             return res.status(400).json({ message: 'Пользователь не найден' })
